@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\LoginController;
@@ -26,6 +25,4 @@ Route::apiResource('produtos', ProdutoController::class);
     return $request->login();
 });*/
 
-Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
-
-//Route::apiResource('login', LoginController::class);
+Route::post('/login', [LoginController::class, 'login']);
