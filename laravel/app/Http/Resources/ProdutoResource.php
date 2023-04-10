@@ -17,10 +17,10 @@ class ProdutoResource extends JsonResource
         return [
             'id' => $this->PRODUTO_ID,
             'nome' => $this->PRODUTO_NOME,
-            'descrição' => $this->PRODUTO_DESC,
-            'preço' => $this->PRODUTO_PRECO,
+            'descricao' => $this->PRODUTO_DESC,
+            'preco' => $this->PRODUTO_PRECO,
             'desconto' => $this->PRODUTO_DESCONTO,
-            'produto ativo' => $this->PRODUTO_ATIVO
+            'produto_ativo' => $this->PRODUTO_ATIVO
         ];
     }
 }
