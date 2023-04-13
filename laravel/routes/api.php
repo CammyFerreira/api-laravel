@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Api\PassportAuthController;
+use App\Http\Controllers\Api\CategoriaController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,3 +31,6 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [LoginController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
 Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api');
+
+//rota para api Listar categorias
+Route::apiResource('categorias', CategoriaController::class);

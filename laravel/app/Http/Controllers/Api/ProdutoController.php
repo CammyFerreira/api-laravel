@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProdutoResource;
 
@@ -14,15 +15,40 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = Produto::all();
+        $query = Produto::with('CATEGORIA');
+        $filterParameter = $request -> input("filtro");
 
-        return response() -> json([
-            'status' => 200,
-            'mensagem' => 'Lista de produtos retornada',
-            'produtos' => ProdutoResource::collection($produtos)
-        ], 200);
+        if($filterParameter == null) {
+            $produtos = $query->get();
+
+            $response = response() -> json([
+                'status' => 200,
+                'mensagem' => 'Lista de produtos retornada',
+                'produtos' => ProdutoResource::collection($produtos)
+            ], 200);
+        } else {
+            [$filterCriteria, $filterValue] = explode(':', $filterParameter);
+
+            if($filterCriteria == 'nome_produto') {
+                $produtos = $query->where('PRODUTO_NOME', $filterValue)->get();
+
+                $response = response() -> json([
+                    'status' => 200,
+                    'mensagem' => 'Lista de produtos filtrada',
+                    'produtos' => ProdutoResource::collection($produtos)
+                ], 200);
+            } else {
+                $response = response() -> json([
+                    'status' => 406,
+                    'mensagem' => 'Filtro não aceito',
+                    'produtos' => []
+                ], 406);
+            }
+        }
+
+        return $response;
     }
 
     /**
