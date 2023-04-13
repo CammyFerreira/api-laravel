@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProdutoController;
+use App\Http\Controllers\Api\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //rota para api Listar produtos
 Route::apiResource('produtos', ProdutoController::class);
+
+//rota para api Listar categorias
+Route::apiResource('categorias', CategoriaController::class);
