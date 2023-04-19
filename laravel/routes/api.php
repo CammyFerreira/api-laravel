@@ -25,3 +25,6 @@ Route::apiResource('produtos', ProdutoController::class);
 
 //rota para api Listar categorias
 Route::apiResource('categorias', CategoriaController::class);
+
+//rota para api Produtos por categoria
+Route::apiResource('categorias/{id}/produtos', 'CategoriaController@produtosPorCategoria');
