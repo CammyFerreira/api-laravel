@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\CarrinhoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::apiResource('produtos', ProdutoController::class);
 
 //rota para api Listar categorias
 Route::apiResource('categorias', CategoriaController::class);
+
+//rota para api Adicionar carrinho
+Route::post('carrinho/inserir', [CarrinhoController::class, 'inserir']);
