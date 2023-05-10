@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\Api\PassportAuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,3 +26,6 @@ Route::apiResource('produtos', ProdutoController::class);
 });*/
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [LoginController::class, 'register']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
+Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api');

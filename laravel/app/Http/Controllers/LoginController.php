@@ -9,6 +9,28 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+    public function register(Request $request){
+
+        $this->validate($request, [
+            'USUARIO_NOME' => 'required|min:4',
+            'USUARIO_EMAIL' => 'required|email',
+            'USUARIO_SENHA' => 'required|min:8',
+            'USUARIO_CPF' => 'required|min:11',
+        ]);
+
+        $user = User::create([
+            'USUARIO_NOME' => $request->name,
+            'USUARIO_EMAIL' => $request->email,
+            'USUARIO_SENHA' => bcrypt( $request->password),
+            'USUARIO_CPF' => $request->cpf,
+        ]);
+
+        $token = $user->createToken('Laravel-9-Passport-Auth')->accessToken;
+
+        return response()->json(['token' => $token], 200);
+    }
+
+
     public function login(Request $request){
 
         $request->validate([
@@ -28,6 +50,22 @@ class LoginController extends Controller
         return response([
             'message' => 'Login realizado com sucesso!'
         ], 200);
+    }
+
+    public function logout(Request $request){
+        $accessToken = auth()->user()->token();
+        $token = $request->user()->tokens->find($accessToken);
+        $token->revoke();
+
+        return response([
+            'message' => 'You have been sucessfully logged out',
+        ], 200);
+    }
+
+    public function userInfo() {
+        $user = auth()->user();
+
+        return response()->json(['user' => $user], 200);
     }
     
     //TODO - Usar essa verificação quando fizer o cadastro || !Hash::check($request->senha, $user->USUARIO_SENHA)
