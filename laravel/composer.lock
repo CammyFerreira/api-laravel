@@ -60,6 +60,7 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "defuse/php-encryption",
@@ -126,6 +127,8 @@
                 "source": "https://github.com/defuse/php-encryption/tree/v2.3.1"
             },
             "time": "2021-04-09T23:57:26+00:00"
+=======
+>>>>>>> 4d55351 (Apis de carrinho)
         },
         {
             "name": "dflydev/dot-access-data",
@@ -497,6 +500,7 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "firebase/php-jwt",
@@ -560,6 +564,8 @@
                 "source": "https://github.com/firebase/php-jwt/tree/v6.4.0"
             },
             "time": "2023-02-09T21:01:23+00:00"
+=======
+>>>>>>> 4d55351 (Apis de carrinho)
         },
         {
             "name": "fruitcake/php-cors",
@@ -1305,6 +1311,7 @@
             "time": "2023-04-25T13:44:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laravel/passport",
             "version": "v11.8.4",
             "source": {
@@ -1392,6 +1399,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "laravel/sanctum",
+            "version": "v3.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sanctum.git",
+                "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 4d55351 (Apis de carrinho)
                 "url": "https://api.github.com/repos/laravel/sanctum/zipball/8ebda85d59d3c414863a7f4d816ef8302faad876",
                 "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876",
                 "shasum": ""
@@ -1577,6 +1595,7 @@
             "time": "2023-02-15T16:40:09+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "lcobucci/clock",
             "version": "2.3.0",
             "source": {
@@ -1726,6 +1745,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "league/commonmark",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "d44a24690f16b8c1808bf13b1bd54ae4c63ea048"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 4d55351 (Apis de carrinho)
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d44a24690f16b8c1808bf13b1bd54ae4c63ea048",
                 "reference": "d44a24690f16b8c1808bf13b1bd54ae4c63ea048",
                 "shasum": ""
@@ -1905,6 +1935,7 @@
             "time": "2022-12-11T20:36:23+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "league/event",
             "version": "2.2.0",
             "source": {
@@ -1973,6 +2004,22 @@
                 "shasum": ""
             },
             "require": {
+=======
+            "name": "league/flysystem",
+            "version": "3.15.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "a141d430414fcb8bf797a18716b09f759a385bed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a141d430414fcb8bf797a18716b09f759a385bed",
+                "reference": "a141d430414fcb8bf797a18716b09f759a385bed",
+                "shasum": ""
+            },
+            "require": {
+>>>>>>> 4d55351 (Apis de carrinho)
                 "league/flysystem-local": "^3.0.0",
                 "league/mime-type-detection": "^1.0.0",
                 "php": "^8.0.2"
@@ -3556,6 +3603,7 @@
         },
         {
             "name": "psr/http-message",
+<<<<<<< HEAD
             "version": "1.1",
             "source": {
                 "type": "git",
@@ -3566,6 +3614,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/http-message/zipball/cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
                 "reference": "cb6ce4845ce34a8ad9e68117c10ee90a29919eba",
+=======
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+>>>>>>> 4d55351 (Apis de carrinho)
                 "shasum": ""
             },
             "require": {
@@ -3574,7 +3634,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "1.1.x-dev"
+=======
+                    "dev-master": "2.0.x-dev"
+>>>>>>> 4d55351 (Apis de carrinho)
                 }
             },
             "autoload": {
@@ -3589,7 +3653,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interface for HTTP messages",
@@ -3603,9 +3667,15 @@
                 "response"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/php-fig/http-message/tree/1.1"
             },
             "time": "2023-04-04T09:50:52+00:00"
+=======
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
+            },
+            "time": "2023-04-04T09:54:51+00:00"
+>>>>>>> 4d55351 (Apis de carrinho)
         },
         {
             "name": "psr/log",
@@ -4010,6 +4080,7 @@
             "time": "2023-04-15T23:01:58+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "stella-maris/clock",
             "version": "0.1.7",
             "source": {
@@ -4071,6 +4142,22 @@
                 "shasum": ""
             },
             "require": {
+=======
+            "name": "symfony/console",
+            "version": "v6.2.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "12288d9f4500f84a4d02254d4aa968b15488476f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/12288d9f4500f84a4d02254d4aa968b15488476f",
+                "reference": "12288d9f4500f84a4d02254d4aa968b15488476f",
+                "shasum": ""
+            },
+            "require": {
+>>>>>>> 4d55351 (Apis de carrinho)
                 "php": ">=8.1",
                 "symfony/deprecation-contracts": "^2.1|^3",
                 "symfony/polyfill-mbstring": "~1.0",
@@ -5652,6 +5739,7 @@
             "time": "2023-04-18T13:56:57+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/psr-http-message-bridge",
             "version": "v2.2.0",
             "source": {
@@ -5754,6 +5842,22 @@
                 "shasum": ""
             },
             "require": {
+=======
+            "name": "symfony/routing",
+            "version": "v6.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/routing.git",
+                "reference": "69062e2823f03b82265d73a966999660f0e1e404"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/69062e2823f03b82265d73a966999660f0e1e404",
+                "reference": "69062e2823f03b82265d73a966999660f0e1e404",
+                "shasum": ""
+            },
+            "require": {
+>>>>>>> 4d55351 (Apis de carrinho)
                 "php": ">=8.1"
             },
             "conflict": {
@@ -7651,6 +7755,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "9.6.7",
             "source": {
                 "type": "git",
@@ -7661,6 +7766,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c993f0d3b0489ffc42ee2fe0bd645af1538a63b2",
                 "reference": "c993f0d3b0489ffc42ee2fe0bd645af1538a63b2",
+=======
+            "version": "9.6.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+                "reference": "17d621b3aff84d0c8b62539e269e87d8d5baa76e",
+>>>>>>> 4d55351 (Apis de carrinho)
                 "shasum": ""
             },
             "require": {
@@ -7734,7 +7851,11 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.7"
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.8"
+>>>>>>> 4d55351 (Apis de carrinho)
             },
             "funding": [
                 {
@@ -7750,7 +7871,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2023-04-14T08:58:40+00:00"
+=======
+            "time": "2023-05-11T05:14:45+00:00"
+>>>>>>> 4d55351 (Apis de carrinho)
         },
         {
             "name": "sebastian/cli-parser",
