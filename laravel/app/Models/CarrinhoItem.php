@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Produto;
 use App\Models\User;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CarrinhoItem extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table = 'CARRINHO_ITEM';
     protected $fillable = ['USUARIO_ID', 'PRODUTO_ID', 'ITEM_QTD'];

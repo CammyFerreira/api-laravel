@@ -38,5 +38,5 @@ Route::apiResource('categorias', CategoriaController::class);
 
 Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
 Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);
-Route::put('/carrinho/{usuario_id}/{produto_id}', [CartController::class, 'atualizar']);
-Route::delete('/carrinho/{usuario_id}/items/{produto_id}', [CartController::class, 'deletar']);
+Route::put('/carrinho/{usuario_id}', [CartController::class, 'atualizar']);
+Route::put('/carrinho/{usuario_id}/item/{produto_id}', [CartController::class, 'deletar']);

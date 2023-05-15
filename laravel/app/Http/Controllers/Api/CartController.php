@@ -38,9 +38,10 @@ class CartController extends Controller
         return response()->json(['status' => 200, 'mensagem' => 'Produto adicionado ao carrinho'], 201);
     }
 
-    public function atualizar(Request $request, $user_id, $produto_id)
+    public function atualizar($user_id, Request $request)
     {
         $item_qtd = $request->input('ITEM_QTD');
+        $produto_id = $request->input('PRODUTO_ID');
         $carrinho_item = CarrinhoItem::where('USUARIO_ID', $user_id)->where('PRODUTO_ID', $produto_id)->first();
         if ($carrinho_item) {
             $carrinho_item->ITEM_QTD = $item_qtd;
@@ -53,11 +54,11 @@ class CartController extends Controller
 
     public function deletar($user_id, $produto_id)
     {
-        $deleted = CarrinhoItem::where('usuario_id', $user_id)->where('produto_id', $produto_id)->delete();
-        if ($deleted) {
-            return response()->json(['message' => 'Produto removido do carrinho'], 200);
-        } else {
-            return response()->json(['error' => 'Produto não encontrado no carrinho'], 404);
-        }
+        $item = CarrinhoItem::where('USUARIO_ID', $user_id)->where('PRODUTO_ID', $produto_id)->firstOrFail();
+
+        $item->ITEM_QTD = 0;
+        $item->save();
+
+        return response()->json(['message' => 'Item removido do carrinho com sucesso!'], 200);
     }
 }
