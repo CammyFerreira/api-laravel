@@ -8,9 +8,25 @@ use App\Models\CarrinhoItem;
 
 class CartController extends Controller
 {
+
     public function listarCarrinho($usuarioId)
     {
-        $carrinhoItens = CarrinhoItem::where('usuario_id', $usuarioId)->get();
+        $carrinhoItens = CarrinhoItem::where('USUARIO_ID', $usuarioId)
+            ->join('PRODUTO', 'CARRINHO_ITEM.PRODUTO_ID', '=', 'PRODUTO.PRODUTO_ID')
+            ->select(
+                'CARRINHO_ITEM.*',
+                'PRODUTO.PRODUTO_NOME',
+                'PRODUTO.PRODUTO_DESC',
+                'PRODUTO.PRODUTO_PRECO',
+                'PRODUTO.PRODUTO_DESCONTO',
+                'PRODUTO.PRODUTO_ATIVO'
+            )
+            ->get();
+
+        if ($carrinhoItens->isEmpty()) {
+            return response()->json(['status' => 204, 'mensagem' => 'Carrinho vazio'], 204);
+        }
+
         return response()->json($carrinhoItens);
     }
 
