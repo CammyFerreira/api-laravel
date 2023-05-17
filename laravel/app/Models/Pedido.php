@@ -14,9 +14,5 @@ class Pedido extends Model
     protected $fillable = ['PEDIDO_ID', 'USUARIO_ID', 'STATUS_ID', 'PEDIDO_DATA'];
     public $incrementing = true;
     public $timestamps = false;
-
-    public function status()
-    {
-        return $this->belongsTo(PedidoStatus::class, 'STATUS_ID');
-    }
+ 
 }

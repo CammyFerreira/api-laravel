@@ -44,12 +44,6 @@ class CartController extends Controller
         if ($carrinho_item) {
             $carrinho_item->ITEM_QTD += $item_qtd;
             $carrinho_item->save();
-        } else {
-            $carrinho_item = new CarrinhoItem;
-            $carrinho_item->usuario_id = $user_id;
-            $carrinho_item->produto_id = $produto_id;
-            $carrinho_item->ITEM_QTD = $item_qtd;
-            $carrinho_item->save();
         }
         return response()->json(['status' => 200, 'mensagem' => 'Produto adicionado ao carrinho'], 201);
     }
@@ -58,10 +52,12 @@ class CartController extends Controller
     {
         $item_qtd = $request->input('ITEM_QTD');
         $produto_id = $request->input('PRODUTO_ID');
-        $carrinho_item = CarrinhoItem::where('USUARIO_ID', $user_id)->where('PRODUTO_ID', $produto_id)->first();
-        if ($carrinho_item) {
-            $carrinho_item->ITEM_QTD = $item_qtd;
-            $carrinho_item->save();
+
+        $affectedRows = CarrinhoItem::where('USUARIO_ID', $user_id)
+            ->where('PRODUTO_ID', $produto_id)
+            ->update(['ITEM_QTD' => $item_qtd]);
+
+        if ($affectedRows > 0) {
             return response()->json(['status' => 200, 'mensagem' => 'Produto atualizado com sucesso'], 200);
         } else {
             return response()->json(['error' => 'Produto não encontrado no carrinho'], 404);
