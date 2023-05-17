@@ -28,4 +28,10 @@ Route::apiResource('produtos', ProdutoController::class);
 Route::apiResource('categorias', CategoriaController::class);
 
 //rota para api Adicionar carrinho
-Route::post('carrinho/inserir', [CarrinhoController::class, 'inserir']);
+// Route::controller(CarrinhoController::class)->group(function () {
+//     Route::get('/user/carrinho', 'show');
+//     Route::post('/user/carrinho', 'store');
+//     Route::patch('/user/carrinhos', 'update');
+// });
+
+Route::apiResource('carrinho', CarrinhoController::class); 

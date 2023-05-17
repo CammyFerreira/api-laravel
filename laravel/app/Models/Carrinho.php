@@ -12,12 +12,20 @@ class Carrinho extends Model
 
     protected $table = 'CARRINHO_ITEM';
     //protected $primaryKey = 'USUARIO_ID';
-    protected $fillable = ['PRODUTO_ID', 'ITEM_QTD'];
-    public $incrementing = true;
+    protected $fillable = ['USUARIO_ID', 'PRODUTO_ID', 'ITEM_QTD'];
     public $timestamps = false;
 
     public function produto()
     {
-        return $this->belongsTo('App\Models\Produto');
+        return $this->belongsTo(Produto::class, 'PRODUTO_ID')->where('PRODUTO_ATIVO', TRUE);
+    }
+
+    //função pra quando a tabela não possui primary key, apenas chaves estrangeiras
+    protected function setKeysForSaveQuery($query) //seleciona as foreign keys
+    {
+        $query->where('USUARIO_ID', '=', $this->getAttribute('USUARIO_ID'))
+            ->where('PRODUTO_ID', '=', $this->getAttribute('PRODUTO_ID'));
+
+        return $query;
     }
 }
