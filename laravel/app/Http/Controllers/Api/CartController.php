@@ -40,11 +40,25 @@ class CartController extends Controller
     {
         $produto_id = $request->input('PRODUTO_ID');
         $item_qtd = $request->input('ITEM_QTD');
-        $carrinho_item = CarrinhoItem::where('USUARIO_ID', $user_id)->where('PRODUTO_ID', $produto_id)->first();
+
+        // Verificar se o usuário possui um carrinho
+        $carrinho_item = CarrinhoItem::where('USUARIO_ID', $user_id)
+            ->where('PRODUTO_ID', $produto_id)
+            ->first();
+
         if ($carrinho_item) {
+            // Se o carrinho_item já existir, atualizar a quantidade
             $carrinho_item->ITEM_QTD += $item_qtd;
             $carrinho_item->save();
+        } else {
+            // Se o carrinho_item não existir, criar um novo CarrinhoItem
+            $carrinho_item = new CarrinhoItem();
+            $carrinho_item->USUARIO_ID = $user_id;
+            $carrinho_item->PRODUTO_ID = $produto_id;
+            $carrinho_item->ITEM_QTD = $item_qtd;
+            $carrinho_item->save();
         }
+
         return response()->json(['status' => 200, 'mensagem' => 'Produto adicionado ao carrinho'], 201);
     }
 
