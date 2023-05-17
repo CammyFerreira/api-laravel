@@ -13,7 +13,7 @@ class OrdersController extends Controller
 {
     public function fecharPedido($user_id)
     {
-        // 1. Encontra os itens do carrinho do usuário
+        // 1. Encontra os itens do carrinho do usuário, em que a quantidade não é zero
         $carrinho_itens = CarrinhoItem::where('USUARIO_ID', $user_id)->where('ITEM_QTD', '!=', 0)->get();
 
         // 2. Se não há itens no carrinho, retorna erro
@@ -21,14 +21,14 @@ class OrdersController extends Controller
             return response()->json(['error' => 'Carrinho vazio'], 400);
         }
 
-        // 4. Cria um novo pedido com o status encontrado
+        // 3. Cria um novo pedido
         $pedido = Pedido::create([
             'USUARIO_ID' => $user_id,
             'STATUS_ID' => 1,
             'PEDIDO_DATA' => today()
         ]);
 
-        // 5. Cria um novo item de pedido para cada item do carrinho e associa ao pedido criado anteriormente
+        // 4. Para cada item de carrinho, ele cria um item de pedido.
         foreach ($carrinho_itens as $carrinho_item) {
             PedidoItem::create([
                 'PEDIDO_ID' => $pedido->PEDIDO_ID,
@@ -37,7 +37,7 @@ class OrdersController extends Controller
                 'ITEM_PRECO' => $carrinho_item->produto->PRODUTO_PRECO
             ]);
 
-            // Define a quantidade do item do carrinho como zero
+            // Fechamento, retorna os itens a 0. 
             $carrinho_item->ITEM_QTD = 0;
             $carrinho_item->save();
         }
