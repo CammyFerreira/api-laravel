@@ -26,6 +26,6 @@ Route::apiResource('produtos', ProdutoController::class);
 });*/
 
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [LoginController::class, 'register']);
+Route::post('/cadastro', [LoginController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
 Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api');
