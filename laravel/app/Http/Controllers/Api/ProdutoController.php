@@ -31,8 +31,8 @@ class ProdutoController extends Controller
         } else {
             [$filterCriteria, $filterValue] = explode(':', $filterParameter);
 
-            if($filterCriteria == 'nome_produto') {
-                $produtos = $query->where('PRODUTO_NOME', $filterValue)->get();
+            if($filterCriteria == 'id_produto') {
+                $produtos = $query->where('PRODUTO_ID', $filterValue)->get();
 
                 $response = response() -> json([
                     'status' => 200,
