@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\CarrinhoController;
 
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,6 +30,8 @@ Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api'
 
 //rota para api Listar categorias
 Route::apiResource('categorias', CategoriaController::class);
+
+Route::apiResource('carrinho', CarrinhoController::class); 
 
 //rota para api Produtos por categoria
 Route::apiResource('categorias/{id}/produtos', 'CategoriaController@produtosPorCategoria');
