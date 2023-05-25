@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Resources\CategoriaResource;
@@ -22,6 +23,17 @@ class CategoriaController extends Controller
             'status' => 200,
             'mensagem' => 'Lista de categorias retornada',
             'categorias' => CategoriaResource::collection($categorias)
+        ], 200);
+    }
+
+    public function produtosPorCategoria($id)
+    {
+        $produtos = Produto::where('id_categoria', $id)->get();
+
+        return response()->json([
+            'status' => 200,
+            'mensagem' => 'Lista de produtos retornada',
+            'categorias' => ProdutoResource::collection($produtos)
         ], 200);
     }
 
