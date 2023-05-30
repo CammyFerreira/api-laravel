@@ -49,6 +49,7 @@ class LoginController extends Controller
     
     
         return response([
+            'user_id' => $user->USUARIO_ID, // adicionar o ID do usuário na resposta
             'message' => 'Login realizado com sucesso!'
         ], 200);
     }

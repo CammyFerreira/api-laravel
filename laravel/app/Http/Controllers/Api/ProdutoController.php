@@ -17,6 +17,7 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
+
         $query = Produto::with('CATEGORIA')->where('produto_ativo', 1);
         $filterParameter = $request -> input("filtro");
 

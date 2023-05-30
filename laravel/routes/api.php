@@ -6,7 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\CarrinhoController;
+use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrdersController;
 
+
+/*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -35,3 +39,12 @@ Route::apiResource('carrinho', CarrinhoController::class);
 
 //rota para api Produtos por categoria
 Route::apiResource('categorias/{id}/produtos', 'CategoriaController@produtosPorCategoria');
+
+Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
+Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);
+Route::put('/carrinho/{usuario_id}', [CartController::class, 'atualizar']);
+Route::put('/carrinho/{usuario_id}/item/{produto_id}', [CartController::class, 'deletar']);
+
+
+//Rota fechamento do carrinho
+Route::post('/fechar-pedido/{usuario_id}', [OrdersController::class, 'fecharPedido']);
