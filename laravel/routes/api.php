@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\OrdersController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+*/
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
@@ -43,7 +44,7 @@ Route::apiResource('categorias/{id}/produtos', 'CategoriaController@produtosPorC
 Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
 Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);
 Route::put('/carrinho/{usuario_id}', [CartController::class, 'atualizar']);
-Route::put('/carrinho/{usuario_id}/item/{produto_id}', [CartController::class, 'deletar']);
+Route::put('/carrinho/deletar/{usuario_id}', [CartController::class, 'deletar']);
 
 
 //Rota fechamento do carrinho

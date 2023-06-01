@@ -78,13 +78,18 @@ class CartController extends Controller
         }
     }
 
-    public function deletar($user_id, $produto_id)
+    public function deletar($user_id, Request $request)
     {
-        $item = CarrinhoItem::where('USUARIO_ID', $user_id)->where('PRODUTO_ID', $produto_id)->firstOrFail();
+        $produto_id = $request->input('PRODUTO_ID');
 
-        $item->ITEM_QTD = 0;
-        $item->save();
+        $affectedRows = CarrinhoItem::where('USUARIO_ID', $user_id)
+            ->where('PRODUTO_ID', $produto_id)
+            ->update(['ITEM_QTD' => 0]);
 
-        return response()->json(['message' => 'Item removido do carrinho com sucesso!'], 200);
+        if ($affectedRows > 0) {
+            return response()->json(['status' => 200, 'mensagem' => 'Produto removido com sucesso'], 200);
+        } else {
+            return response()->json(['error' => 'Produto não encontrado no carrinho'], 404);
+        }
     }
 }
