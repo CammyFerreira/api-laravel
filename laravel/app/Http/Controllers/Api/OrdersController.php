@@ -43,6 +43,56 @@ class OrdersController extends Controller
         }
 
         // Retorna sucesso
-        return response()->json(['message' => 'Pedido fechado com sucesso'], 200);
+        return response()->json(['message' => 'Pedido fechado com sucesso'], 204);
+    }
+
+    public function listarPedidos($user_id)
+    {
+        // Encontra os pedidos do usuário
+        $pedidos = Pedido::where('USUARIO_ID', $user_id)->get();
+
+        // Verifica se o usuário possui pedidos
+        if ($pedidos->isEmpty()) {
+            return response()->json(['message' => 'Usuário não possui pedidos'], 200);
+        }
+
+        // Cria um array para armazenar os detalhes dos pedidos
+        $detalhes_pedidos = [];
+
+        // Itera sobre cada pedido do usuário
+        foreach ($pedidos as $pedido) {
+            // Encontra os itens do pedido
+            $itens_pedido = PedidoItem::where('PEDIDO_ID', $pedido->PEDIDO_ID)->get();
+
+            // Cria um array para armazenar os detalhes dos itens do pedido
+            $detalhes_itens_pedido = [];
+
+            foreach ($itens_pedido as $item_pedido) {
+                // Obtém o nome do produto associado ao item do pedido
+                $nome_produto = $item_pedido->produto->PRODUTO_NOME;
+
+                // Obtém a quantidade e o preço do item do pedido
+                $quantidade = $item_pedido->ITEM_QTD;
+                $preco = $item_pedido->ITEM_PRECO;
+
+                // Adiciona os detalhes do item do pedido ao array
+                $detalhes_itens_pedido[] = [
+                    'nome_produto' => $nome_produto,
+                    'quantidade' => $quantidade,
+                    'preco' => $preco
+                ];
+            }
+
+            // Adiciona os detalhes do pedido ao array
+            $detalhes_pedidos[] = [
+                'pedido_id' => $pedido->PEDIDO_ID,
+                'data_pedido' => $pedido->PEDIDO_DATA,
+                'status_id' => $pedido->STATUS_ID,
+                'itens_pedido' => $detalhes_itens_pedido
+            ];
+        }
+
+        // Retorna os detalhes dos pedidos do usuário
+        return response()->json($detalhes_pedidos, 200);
     }
 }
