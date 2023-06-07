@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Api\PassportAuthController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\CarrinhoController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\OrdersController;
 
@@ -26,22 +27,22 @@ use App\Http\Controllers\Api\OrdersController;
 
 //rota para api Listar produtos
 Route::apiResource('produtos', ProdutoController::class);
-/*Route::post('/login', function (Request $request) {
-    return $request->login();
-});*/
 
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [LoginController::class, 'register']);
+Route::post('/cadastro', [LoginController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
 Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api');
 
 //rota para api Listar categorias
 Route::apiResource('categorias', CategoriaController::class);
 
+//rota para api Produtos por categoria
+Route::get('categorias/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria']);
+
 Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
 Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);
 Route::put('/carrinho/{usuario_id}', [CartController::class, 'atualizar']);
-Route::put('/carrinho/{usuario_id}/item/{produto_id}', [CartController::class, 'deletar']);
+Route::put('/carrinho/deletar/{usuario_id}', [CartController::class, 'deletar']);
 
 
 //Rota fechamento do carrinho

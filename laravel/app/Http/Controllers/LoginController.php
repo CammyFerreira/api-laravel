@@ -21,13 +21,14 @@ class LoginController extends Controller
         $user = User::create([
             'USUARIO_NOME' => $request->name,
             'USUARIO_EMAIL' => $request->email,
-            'USUARIO_SENHA' => bcrypt( $request->password),
+            'USUARIO_SENHA' => bcrypt($request->password),
             'USUARIO_CPF' => $request->cpf,
         ]);
 
-        $token = $user->createToken('Laravel-9-Passport-Auth')->accessToken;
-
-        return response()->json(['token' => $token], 200);
+        if (!$user) {
+            return response()->json(['error' => 'Falha ao cadastrar o usuário.'], 500);
+       }
+        return response()->json(['message' => "Usuário cadastrado com sucesso!"], 200);
     }
 
 
