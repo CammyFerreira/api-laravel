@@ -52,6 +52,13 @@ class ProdutoController extends Controller
         return $response;
     }
 
+    public function searchByName(Request $request)
+    {
+        $nome = $request->input('nome');
+        $produtos = Produto::where('PRODUTO_NOME', 'LIKE', '%' . $nome . '%')->get();;
+        return ProdutoResource::collection($produtos);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

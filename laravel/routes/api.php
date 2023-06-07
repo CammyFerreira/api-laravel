@@ -25,25 +25,28 @@ use App\Http\Controllers\Api\OrdersController;
 //     return $request->user();
 // });
 
+//Rota busca de produtos pelo nome (search)
+Route::get('/produtos/search', [ProdutoController::class, 'searchByName']);
 //rota para api Listar produtos
 Route::apiResource('produtos', ProdutoController::class);
+//rota para api Produtos por categoria
+Route::get('categorias/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria']);
 
+//rota para api Listar categorias
+Route::apiResource('categorias', CategoriaController::class);
+
+//rotas login
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/cadastro', [LoginController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:api');
 Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api');
 
-//rota para api Listar categorias
-Route::apiResource('categorias', CategoriaController::class);
-
-//rota para api Produtos por categoria
-Route::get('categorias/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria']);
-
+//rotas carrinho
 Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
 Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);
 Route::put('/carrinho/{usuario_id}', [CartController::class, 'atualizar']);
 Route::put('/carrinho/deletar/{usuario_id}', [CartController::class, 'deletar']);
-
-
 //Rota fechamento do carrinho
 Route::post('/fechar-pedido/{usuario_id}', [OrdersController::class, 'fecharPedido']);
+
+
