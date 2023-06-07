@@ -37,7 +37,7 @@ Route::get('/user', [LoginController::class, 'userInfo'])->middleware('auth:api'
 Route::apiResource('categorias', CategoriaController::class);
 
 //rota para api Produtos por categoria
-Route::apiResource('categorias/{id}/produtos', 'CategoriaController@produtosPorCategoria');
+Route::get('categorias/{id}/produtos', [CategoriaController::class, 'produtosPorCategoria']);
 
 Route::get('carrinho/{usuario_id}', [CartController::class, 'listarCarrinho']);
 Route::post('/carrinho/{usuario_id}', [CartController::class, 'adicionar']);

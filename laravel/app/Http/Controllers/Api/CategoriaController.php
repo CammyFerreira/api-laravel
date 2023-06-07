@@ -29,12 +29,12 @@ class CategoriaController extends Controller
 
     public function produtosPorCategoria($id)
     {
-        $produtos = Produto::where('id_categoria', $id)->get();
+        $produtos = Produto::where('CATEGORIA_ID', $id)->get();
 
         return response()->json([
             'status' => 200,
             'mensagem' => 'Lista de produtos retornada',
-            'categorias' => ProdutoResource::collection($produtos)
+            'produtos' => ProdutoResource::collection($produtos)
         ], 200);
     }
 
