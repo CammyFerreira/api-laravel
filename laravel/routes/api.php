@@ -47,3 +47,4 @@ Route::put('/carrinho/deletar/{usuario_id}', [CartController::class, 'deletar'])
 
 //Rota fechamento do carrinho
 Route::post('/fechar-pedido/{usuario_id}', [OrdersController::class, 'fecharPedido']);
+Route::get('/pedidos/{usuario_id}', [OrdersController::class, 'listarPedidos']);
