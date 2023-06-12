@@ -53,7 +53,7 @@ class OrdersController extends Controller
 
         // Verifica se o usuário possui pedidos
         if ($pedidos->isEmpty()) {
-            return response()->json(['message' => 'Usuário não possui pedidos'], 200);
+            return response()->json(['message' => 'Usuário não possui pedidos'], 404);
         }
 
         // Cria um array para armazenar os detalhes dos pedidos
