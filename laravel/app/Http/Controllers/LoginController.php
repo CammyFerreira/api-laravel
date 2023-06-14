@@ -19,10 +19,10 @@ class LoginController extends Controller
         ]);
 
         $user = User::create([
-            'USUARIO_NOME' => $request->name,
-            'USUARIO_EMAIL' => $request->email,
-            'USUARIO_SENHA' => bcrypt($request->password),
-            'USUARIO_CPF' => $request->cpf,
+            'USUARIO_NOME' => $request->USUARIO_NOME,
+            'USUARIO_EMAIL' => $request->USUARIO_EMAIL,
+            'USUARIO_SENHA' => bcrypt($request->USUARIO_SENHA),
+            'USUARIO_CPF' => $request->USUARIO_CPF,
         ]);
 
         if (!$user) {
@@ -31,9 +31,7 @@ class LoginController extends Controller
         return response()->json(['message' => "Usuário cadastrado com sucesso!"], 200);
     }
 
-
-    public function login(Request $request){
-
+    public function login(Request $request) {
         $request->validate([
             'email' => 'required|string',
             'senha' => 'required|string'
@@ -41,15 +39,14 @@ class LoginController extends Controller
     
         $user = User::where('USUARIO_EMAIL', $request->email)->first();
     
-        if (!$user || $request->senha !== $user->USUARIO_SENHA) {
+        if (!$user || !Hash::check($request->senha, $user->USUARIO_SENHA)) {
             return response([
                 'message' => 'Credenciais inválidas'
             ], 401);
         }
     
-    
         return response([
-            'user_id' => $user->USUARIO_ID, // adicionar o ID do usuário na resposta
+            'user_id' => $user->USUARIO_ID,
             'message' => 'Login realizado com sucesso!'
         ], 200);
     }
@@ -69,7 +66,5 @@ class LoginController extends Controller
 
         return response()->json(['user' => $user], 200);
     }
-    
-    //TODO - Usar essa verificação quando fizer o cadastro || !Hash::check($request->senha, $user->USUARIO_SENHA)
     
 }
