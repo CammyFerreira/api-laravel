@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
+use App\Models\ProdutoImagem;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProdutoResource;
@@ -50,6 +51,13 @@ class ProdutoController extends Controller
         }
 
         return $response;
+    }
+
+    public function searchByName(Request $request)
+    {
+        $nome = $request->input('nome');
+        $produtos = Produto::where('PRODUTO_NOME', 'LIKE', '%' . $nome . '%')->get();;
+        return ProdutoResource::collection($produtos);
     }
 
     /**

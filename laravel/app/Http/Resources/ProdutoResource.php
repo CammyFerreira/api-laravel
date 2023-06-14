@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ProdutoImagemResource;
 
 class ProdutoResource extends JsonResource
 {
@@ -21,7 +22,8 @@ class ProdutoResource extends JsonResource
             'preco_produto' => $this->PRODUTO_PRECO,
             'desconto_produto' => $this->PRODUTO_DESCONTO,
             'id_categoria' => $this->CATEGORIA_ID,
-            'produto_ativo' => $this->PRODUTO_ATIVO
+            'produto_ativo' => $this->PRODUTO_ATIVO,
+            'imagem_produto' => ProdutoImagemResource::collection($this->imagens),
         ];
     }
 }
