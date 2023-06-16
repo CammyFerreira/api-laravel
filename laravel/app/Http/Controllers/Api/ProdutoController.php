@@ -55,8 +55,10 @@ class ProdutoController extends Controller
 
     public function searchByName(Request $request)
     {
-        $nome = $request->input('nome');
-        $produtos = Produto::where('PRODUTO_NOME', 'LIKE', '%' . $nome . '%')->get();;
+        //$nome = $request->input('nome');
+        $produtos = Produto::where('PRODUTO_NOME', 'LIKE', '%' . $nome . '%')
+                       ->where('produto_ativo', 1)
+                       ->get();
         return ProdutoResource::collection($produtos);
     }
 
