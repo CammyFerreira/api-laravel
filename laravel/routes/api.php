@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\OrdersController;
 // });
 
 //Rota busca de produtos pelo nome (search)
-Route::get('/produtos/search', [ProdutoController::class, 'searchByName']);
+Route::get('/produtos/search/{nome}', [ProdutoController::class, 'searchByName']);
 //rota para api Listar produtos
 Route::apiResource('produtos', ProdutoController::class);
 //rota para api Produtos por categoria
